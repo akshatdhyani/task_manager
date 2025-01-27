@@ -53,7 +53,7 @@ class UserViewSet(viewsets.ModelViewSet):
             role = data['role']
         )
         user.save()
-        return Response({'message': 'User has been registered. Thankyou for registering'})
+        return Response({'message': 'User has been registered. Thankyou for registering'}, status=status.HTTP_201_CREATED)
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
@@ -73,7 +73,7 @@ class TaskViewSet(viewsets.ModelViewSet):
             task.assigned_to = employee
             task.save()
             return Response({'message': 'Task has been assigned to the employee.'})
-        return Response({'error': 'Invalid employee ID. Please enter a valid employee ID.'})
+        return Response({'error': 'Invalid employee ID. Please enter a valid employee ID.'}, status=status.HTTP_400_BAD_REQUEST)
     
     @action(detail=True, methods=['delete'], url_path='delete')
     def delete_task(self, request, pk=None):
