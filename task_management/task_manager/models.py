@@ -11,14 +11,14 @@ class User(AbstractUser):
     ], default='employee')
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='task_manager_users',  # Use a unique related_name
+        related_name='task_manager_users', 
         blank=True,
         help_text='The groups this user belongs to.',
         verbose_name='groups'
     )
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='task_manager_users',  # Use a unique related_name
+        related_name='task_manager_users',  
         blank=True,
         help_text='Specific permissions for this user.',
         verbose_name='user permissions'
